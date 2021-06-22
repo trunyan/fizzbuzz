@@ -24,7 +24,7 @@ def validate_row(row):
     if len(row) != MAX_VALID_VALUES:
         raise InvalidNumberOfValues
 
-
+#centralized fizzbuzz logic
 def get_fizzbuzz(r, lucky_check = False):
     
     if lucky_check and  '3' in str(r):
@@ -74,6 +74,7 @@ def fizz_buzz_report(row):
 
 def db_save(run_results, row_results = []):
     from pydblite.sqlite import Database, Table
+    #uncomment to store in memory and not persist to disk
     #db = Database(":memory:")
     db = Database("fizzbuzz.db")
 
@@ -197,8 +198,7 @@ def import_file(csv_file_name):
 
 
 def main(file_name):
-    
-    #result = import_file('./data/test_values.csv')    
+        
     result = import_file(file_name)    
     print(f"Valid Rows:= {result['valid_row_count']} | Invalid Rows:= {result['invalid_row_count']} - in {result['duration'].total_seconds()} seconds")
 
